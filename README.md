@@ -31,7 +31,8 @@ Demo mode: pick which seeded user you're acting as — no login. (JWT auth is on
 Backend (from `backend/`):
 
 ```bash
-pip install -r ../requirements.txt
+pip install -r requirements.txt
+cd backend
 python -m uvicorn app.main:app --reload --port 8000
 ```
 
