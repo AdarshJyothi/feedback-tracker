@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feedback Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">FT</span>
+      <div>
+        <h1>Feedback Tracker</h1>
+        <p class="tagline">Complaint feedback &amp; RCA actions</p>
+      </div>
+    </div>
+    <nav class="tabs">
+      <button class="tab active" data-view="dashboard">Dashboard</button>
+      <button class="tab" data-view="complaints">Complaints</button>
+    </nav>
+    <div class="user-picker">
+      <label for="current-user">Acting as</label>
+      <select id="current-user"></select>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= DASHBOARD ================= -->
+    <section id="view-dashboard" class="view">
+      <div class="kpi-row" id="kpi-row"></div>
+      <div class="charts-grid">
+        <div class="card chart-card wide">
+          <h3>Received vs resolved <span class="muted">(weekly, last 12 weeks)</span></h3>
+          <canvas id="chart-trend"></canvas>
+        </div>
+        <div class="card chart-card">
+          <h3>Complaints by category</h3>
+          <canvas id="chart-category"></canvas>
+        </div>
+        <div class="card chart-card">
+          <h3>Root cause Pareto <span class="muted">(investigated)</span></h3>
+          <canvas id="chart-rootcause"></canvas>
+        </div>
+        <div class="card chart-card">
+          <h3>Severity mix</h3>
+          <canvas id="chart-severity"></canvas>
+        </div>
+        <div class="card chart-card">
+          <h3>Top work types</h3>
+          <canvas id="chart-worktype"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= COMPLAINTS ================= -->
+    <section id="view-complaints" class="view hidden">
+      <div class="toolbar">
+        <input type="search" id="filter-search" placeholder="Search ref, policy or text…" />
+        <select id="filter-status"><option value="">All statuses</option></select>
+        <select id="filter-category"><option value="">All categories</option></select>
+        <select id="filter-severity"><option value="">All severities</option></select>
+        <label class="chk"><input type="checkbox" id="filter-overdue" /> Overdue only</label>
+        <span class="spacer"></span>
+        <button class="btn primary" id="btn-new">+ New complaint</button>
+      </div>
+      <div class="card">
+        <table id="complaints-table">
+          <thead>
+            <tr>
+              <th>Ref</th><th>Received</th><th>Work type</th><th>Category</th>
+              <th>Severity</th><th>Status</th><th>Root cause</th><th>Days</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <p id="table-empty" class="muted hidden" style="padding:16px">No complaints match the current filters.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= DETAIL MODAL ================= -->
+  <div class="modal-backdrop hidden" id="detail-backdrop">
+    <div class="modal" id="detail-modal">
+      <button class="modal-close" data-close>&times;</button>
+      <div id="detail-body"></div>
+    </div>
+  </div>
+
+  <!-- ================= NEW COMPLAINT MODAL ================= -->
+  <div class="modal-backdrop hidden" id="new-backdrop">
+    <div class="modal narrow">
+      <button class="modal-close" data-close>&times;</button>
+      <h2>Log a new complaint</h2>
+      <form id="new-form">
+        <div class="grid2">
+          <label>Policy ref
+            <input name="policy_ref" required minlength="3" maxlength="20" placeholder="SW12345678" />
+          </label>
+          <label>Received date
+            <input name="received_date" type="date" />
+          </label>
+          <label>Work type
+            <select name="work_type" required></select>
+          </label>
+          <label>Category
+            <select name="category" required></select>
+          </label>
+          <label>Severity
+            <select name="severity" required></select>
+          </label>
+        </div>
+        <label>Description
+          <textarea name="description" required minlength="10" rows="4"
+            placeholder="What happened, from the customer's perspective…"></textarea>
+        </label>
+        <div class="form-actions">
+          <button type="button" class="btn" data-close>Cancel</button>
+          <button type="submit" class="btn primary">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
