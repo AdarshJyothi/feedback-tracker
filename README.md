@@ -71,3 +71,11 @@ Open <http://localhost:8001>. Interactive API docs at <http://localhost:8000/doc
 - CSV export of complaints and actions
 - Email notifications for overdue actions
 - PostgreSQL + Alembic migrations
+
+
+<img width="939" height="407" alt="image" src="https://github.com/user-attachments/assets/cc284727-8560-4eb3-97b5-17999cd4925b" />
+
+<img width="938" height="409" alt="image" src="https://github.com/user-attachments/assets/02443b7e-9754-4e44-9576-e4b01ec88cc3" />
+
+
+
