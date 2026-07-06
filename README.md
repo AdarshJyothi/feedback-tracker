@@ -2,7 +2,7 @@
 
 A complaint feedback and RCA (root cause analysis) action tracker for operations teams — FastAPI backend, vanilla JS frontend.
 
-**The story:** during my time as a Senior Operations Analyst at Diligenta, I built feedback-tracking and decision-support tooling in Excel VBA for complaint and operational workflows. This project is a ground-up rebuild of that idea in Python — the same domain knowledge, expressed as a proper web application with an API, a database, workflow rules, and an analytics dashboard.
+Built from hands-on experience with complaint handling and root-cause analysis in financial-services operations: the workflows, the discipline the tooling needs to enforce, and the analytics teams actually use.
 
 ---
 
